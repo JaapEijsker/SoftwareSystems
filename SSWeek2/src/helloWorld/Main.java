@@ -7,6 +7,7 @@ public class Main {
 		System.out.println("Deze wijziging is gemaakt op de GitHub-website :)");
 		System.out.println("We zitten nu in de Horstring");
 		System.out.println("Dit is dan weer in Eclipse getypt");
+		System.out.println("dit heeft rick getypt ");
 	}
 
 }
