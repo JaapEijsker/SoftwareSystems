@@ -15,7 +15,7 @@ public class Rectangle {
        requires theLength >= 0;
        requires theWidth >= 0;
        ensures this.getLength() == theLength;
-       ensures this.getWidth() == theLength;
+       ensures this.getWidth() == theWidth;
      */
     public Rectangle(int theLength, int theWidth) {
     	length = theLength;

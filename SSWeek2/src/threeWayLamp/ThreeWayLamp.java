@@ -14,7 +14,7 @@ public class ThreeWayLamp {
 	 * constructs a threewaylamp
 	 * initial state is 'off'
 	 */
-	/*@pure */
+	//@ ensures getLight() == 0;
 	public ThreeWayLamp() {
 		light = OFF;
 	}
@@ -31,7 +31,12 @@ public class ThreeWayLamp {
 	/*
 	 * Switches the setting of the lamp to the next setting
 	 */
-	//@ensures getLight() == \old((getLight() + 1) % 4);
+	//@ ensures \old(getLight() == OFF) ==> getLight() == LOW;
+	//@ ensures \old(getLight() == LOW) ==> getLight() == MED;
+	//@ ensures \old(getLight() == MED) ==> getLight() == HIG;
+	//@ ensures \old(getLight() == HIG) ==> getLight() == MED;;
+
+	
 	public void switchSetting() {
 		light = (light + 1) % 4;
 	}

@@ -2,16 +2,24 @@ package hotel;
 
 public class Safe {
 	
+	public static void main(String[] args) {
+		Safe violate = new Safe("ha ha");
+		System.out.println(violate.getPassword());
+
+	}
+	
 	/*@ 	invariant pass.password != "" && pass.password != null;
 	 		public invariant isActive == true || isActive == false;
 			public invariant isOpen == true || isOpen == false;
 	 */
-	
+
 	Password pass;
 	public boolean isActive;
 	public boolean isOpen;
-	
+
 	// Constructor for the Safe Class with initial password
+	//@ requires password.indexOf(" ") == -1;
+	//@ requires password.length() > 14;
 	public Safe(String password) {
 		pass = new Password();
 		String initial = Password.INITIAL;
@@ -41,10 +49,11 @@ public class Safe {
 		}
 	}
 	
-	// Method "deactivate" works if: 1. Safe active
+	// Method "deactivate" works if: 1. Safe active. NB: This method also closes the safe!
 	public boolean deactivate() {
 		if (isActive) {
 			isActive = false;
+			isOpen = false;
 			return true;
 		} else {
 			return false;
@@ -53,7 +62,7 @@ public class Safe {
 	
 	// Method "open" works if: 1. Password correct. 2. Safe not open yet (!isOpen)
 	public boolean open(String password) {
-		if (!isOpen && pass.testWord(password)) {
+		if (isActive && !isOpen && pass.testWord(password)) {
 			isOpen = true;
 			return true;
 		} else {
@@ -74,5 +83,6 @@ public class Safe {
 	public Password getPassword() {
 		return this.pass;
 	}
+	
 	
 }
