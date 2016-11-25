@@ -7,7 +7,7 @@ public class Password {
 	
 	
 	public Password() {
-		password = INITIAL; // capital letters because it's a constant ("final")
+		this.password = INITIAL; // capital letters because it's a constant ("final")
 	}
 	
 	
@@ -28,16 +28,17 @@ public class Password {
 		if (oldPass.equals(password) && acceptable(newPass)) {
 			password = newPass;
 			return true;
+		} else {
+			return false;
 		}
-		else return false;
 	}
 	
 	
 	
 	// Test if input "test" matches password
 	public boolean testWord(String test) {
-		return (test.equals(password));
-		}
+		return test.equals(password);
+	}
 
 	public String toString() {
 		return "Password: " + password;

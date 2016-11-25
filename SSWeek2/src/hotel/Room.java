@@ -59,6 +59,11 @@ public class Room {
     }
     
     public String toString() {
-		return "Room: " + number + ", Guest: " + guest.getName();
+    	if (guest != null) {
+    		return "Room: " + number + ", Guest: " + guest.getName();
+    	} else {
+    		return "Room: " + number + ", Guest: none";
+    	}
+		
     }
 }

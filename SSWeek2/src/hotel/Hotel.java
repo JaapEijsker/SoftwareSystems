@@ -1,23 +1,27 @@
 package hotel;
 
 public class Hotel {
-	String name;
-	Room room1;
-	Room room2;
-	Password password;
+	private String name;
+	private Room room1;
+	private Room room2;
+	private Password password;
 	
 	public Hotel(String hotelName) {
-		name = hotelName;
-		room1 = new Room(1);
-		room2 = new Room(2);
-		password = new Password();
+		this.name = hotelName;
+		this.room1 = new Room(1);
+		this.room2 = new Room(2);
+		this.password = new Password();
 	}
 	
 	//
-	public Room checkIn(String password, String guestname) {
+	public Room checkIn(String pass, String guestname) {
 		Guest guest = new Guest(guestname);
-		if (this.getPassword().testWord(password)
+//		System.out.println(this.getPassword().testWord(pass));
+//		System.out.println(this.getRoom(guestname));
+		
+		if (this.getPassword().testWord(pass)
 				&& this.getFreeRoom() != null && this.getRoom(guestname) == null) {
+			
 			Room room = getFreeRoom();
 			guest.checkin(room);
 			return room;
@@ -28,12 +32,12 @@ public class Hotel {
 	
 	//
 	public boolean checkOut(String guestname) {
-		if (room1.getGuest().getName() == guestname) {
+		if (room1.getGuest() != null && room1.getGuest().getName() == guestname && room1.getGuest() != null) {
 			room1.getGuest().checkout();
 			Safe safe = room1.getSafe();
 			safe.deactivate();
 			return true;
-		} else if (room2.getGuest().getName() == guestname) {
+		} else if (room2.getGuest() != null && room2.getGuest().getName() == guestname && room2.getGuest() != null) {
 			room2.getGuest().checkout();
 			Safe safe = room2.getSafe();
 			safe.deactivate();
@@ -56,9 +60,9 @@ public class Hotel {
 	
 	//
 	public Room getRoom(String guestname) {
-		if (room1.getGuest().getName() == guestname) {
+		if (room1.getGuest() != null && room1.getGuest().getName().equals(guestname)) {
 			return room1;
-		} else if (room2.getGuest().getName() == guestname) {
+		} else if (room2.getGuest() != null && room2.getGuest().getName().equals(guestname)) {
 			return room2;
 		} else {
 			return null;
@@ -72,7 +76,9 @@ public class Hotel {
 	
 	//
 	public String toString() {
-		return "These are all hotel rooms: ....";
+		System.out.println(room1.toString());
+		System.out.println(room2.toString());
+		return  (room1.toString() + room2.toString());
 	}
 	
 	//

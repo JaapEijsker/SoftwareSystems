@@ -22,11 +22,11 @@ public class HotelTest {
      */
     @Before
     public void setUp() {
-        hotel = new Hotel("Fawlty Towers");
+        this.hotel = new Hotel("Fawlty Towers");
 
         // initialisation of password-variable
-        correctPassword = Password.INITIAL;
-        wrongPassword = Password.INITIAL + "_invalid";
+        this.correctPassword = Password.INITIAL;
+        this.wrongPassword = Password.INITIAL + "_invalid";
     }
 
     /**
@@ -34,7 +34,7 @@ public class HotelTest {
      */
     @Test
     public void testCheckInWithWrongPassword() {
-        Room room = hotel.checkIn(wrongPassword, GUEST_NAME_1);
+        Room room = this.hotel.checkIn(wrongPassword, GUEST_NAME_1);
         assertNull("No check in with wrong password", room);
     }
 
@@ -44,13 +44,13 @@ public class HotelTest {
      */
     @Test
     public void testCheckInWithCorrectPassword() {
-        Room room1 = hotel.checkIn(correctPassword, GUEST_NAME_1);
+        Room room1 = this.hotel.checkIn(correctPassword, GUEST_NAME_1);
         assertEquals("Correct 1st guest check in", GUEST_NAME_1, room1.getGuest().getName());
 
-        Room room2 = hotel.checkIn(correctPassword, GUEST_NAME_2);
+        Room room2 = this.hotel.checkIn(correctPassword, GUEST_NAME_2);
         assertEquals("Correct 2nd guest check in", GUEST_NAME_2, room2.getGuest().getName());
 
-        Room noRoom = hotel.checkIn(correctPassword, GUEST_NAME_3);
+        Room noRoom = this.hotel.checkIn(correctPassword, GUEST_NAME_3);
         assertNull("No check in when hotel is full", noRoom);
     }
 
@@ -68,7 +68,7 @@ public class HotelTest {
         hotel.checkOut(GUEST_NAME_1);
         assertNull("Guest has no room", guest.getRoom());
         assertNull("Room has no guest", room.getGuest());
-        assertFalse("Safe is inactive", safe.isActive());
+        assertFalse("Safe is inactive", safe.getActive());
     }
 
     @Test

@@ -19,7 +19,7 @@ public class Safe {
 		String initial = Password.INITIAL;
 		pass.setWord(initial, password);
 		isOpen = false;
-		assert password.equals(this.getPassword()); //only works if -ea enabled in run configuration
+//	assert password.equals(this.getPassword()); // only works if -ea enabled in run configuration
 	}
 	
 	//@ ensures \result == isActive; 

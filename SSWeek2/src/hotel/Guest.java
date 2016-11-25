@@ -6,12 +6,11 @@ public class Guest {
 	private Room r;
 	
 	public Guest(String n) {
-		name = n;
-		r = null;
+		this.name = n;
 	}
 	
 	public boolean checkin(Room room) {
-		if (r == null && room != null && room.getGuest() == null) {
+		if (r == null && room.getGuest() == null) {
 			r = room;
 			room.setGuest(this);
 			return true;
