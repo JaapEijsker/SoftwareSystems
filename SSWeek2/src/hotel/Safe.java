@@ -2,12 +2,6 @@ package hotel;
 
 public class Safe {
 	
-	public static void main(String[] args) {
-		Safe violate = new Safe("ha ha");
-		System.out.println(violate.getPassword());
-
-	}
-	
 	/*@ 	invariant pass.password != "" && pass.password != null;
 	 		public invariant isActive == true || isActive == false;
 			public invariant isOpen == true || isOpen == false;
@@ -18,13 +12,14 @@ public class Safe {
 	public boolean isOpen;
 
 	// Constructor for the Safe Class with initial password
-	//@ requires password.indexOf(" ") == -1;
+	// @ requires password.indexOf(" ") == -1;
 	//@ requires password.length() > 14;
 	public Safe(String password) {
 		pass = new Password();
 		String initial = Password.INITIAL;
 		pass.setWord(initial, password);
 		isOpen = false;
+		assert password.equals(this.getPassword()); //only works if -ea enabled in run configuration
 	}
 	
 	//@ ensures \result == isActive; 
