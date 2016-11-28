@@ -36,6 +36,7 @@ public class Password {
 	
 	
 	// Test if input "test" matches password
+	//@ pure
 	public boolean testWord(String test) {
 		return test.equals(password);
 	}

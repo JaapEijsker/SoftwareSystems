@@ -29,6 +29,7 @@ public class Guest {
 		}
 	}
 	
+	//@ pure
 	public String getName() {
 		return name;
 	}
